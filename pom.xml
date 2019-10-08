@@ -4,8 +4,13 @@
   <artifactId>flink-demo</artifactId>
   <version>1.0-SNAPSHOT</version>
   <inceptionYear>2008</inceptionYear>
+  <modules>
+    <module>wordcount</module>
+  </modules>
+
+  <packaging>pom</packaging>
   <properties>
-    <scala.version>2.7.0</scala.version>
+    <scala.version>2.11.8</scala.version>
   </properties>
 
   <repositories>
@@ -30,23 +35,21 @@
       <artifactId>scala-library</artifactId>
       <version>${scala.version}</version>
     </dependency>
+    <!--flink scala 依赖-->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.4</version>
-      <scope>test</scope>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-scala_2.11</artifactId>
+      <version>1.9.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-streaming-scala -->
     <dependency>
-      <groupId>org.specs</groupId>
-      <artifactId>specs</artifactId>
-      <version>1.2.5</version>
-      <scope>test</scope>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-streaming-scala_2.11</artifactId>
+      <version>1.9.0</version>
     </dependency>
   </dependencies>
 
   <build>
-    <sourceDirectory>src/main/scala</sourceDirectory>
-    <testSourceDirectory>src/test/scala</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.scala-tools</groupId>

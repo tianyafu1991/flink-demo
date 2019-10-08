@@ -1,0 +1,12 @@
+hello world
+hello flink
+hello spark
+hello hadoop
+hello hive
+hello hbase
+hello kafka
+hello elasticsearch
+hello flume
+hello baby
+how are you
+fine thank you
