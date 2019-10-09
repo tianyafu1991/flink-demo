@@ -1,6 +1,10 @@
 package com.tianyafu.apitest
 
+import java.util.Properties
+
+import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.scala._
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 
 //定义一个数据样例类，传感器id，采集时间戳，传感器温度
 case class SensorReading(id:String,timestamp:Long,temperature:Double)
@@ -23,12 +27,24 @@ object Sensor {
     //source2 : 从文件中读取数据
     val inputPath = "E:\\WorkSpace\\IDEAWorkspace\\flinkdemo\\wordcount\\src\\main\\resource\\sensor.txt"
     val stream2 = env.readTextFile(inputPath)
+
+    //source3 ；从kafka中读取数据源
+    val properties  = new Properties()
+    properties.setProperty("bootstrap.servers", "master:9092,slave01:9092,slave02:9092")
+    properties.setProperty("group.id", "consumer-group")
+    properties.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
+    properties.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
+    properties.setProperty("auto.offset.reset", "earliest")
+
+    val stream3 = env.addSource(new FlinkKafkaConsumer[String]("test",new SimpleStringSchema(),properties))
+
     //tranformation
 
 
     //sink
     stream1.print("stream1").setParallelism(1)
     stream2.print("stream2").setParallelism(1)
+    stream3.print("stream3").setParallelism(1)
 
     env.execute("api test")
 
