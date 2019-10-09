@@ -1,4 +1,4 @@
-package com.tianyafu
+package com.tianyafu.wordcount
 
 import org.apache.flink.api.scala._
 
