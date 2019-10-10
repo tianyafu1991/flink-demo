@@ -39,15 +39,36 @@ object Sensor {
 
     //tranformation
 
-    val dataStream = stream2.map(data =>{
+    val data = stream2.map(data => {
       val dataArray = data.split(",")
-      SensorReading(dataArray(0).trim,dataArray(1).trim.toLong,dataArray(2).trim.toDouble)
-    }).keyBy("id").sum("temperature")
+      SensorReading(dataArray(0).trim, dataArray(1).trim.toLong, dataArray(2).trim.toDouble)
+    })
 
-    val dataStream2 = stream2.map(data =>{
-      val dataArray = data.split(",")
-      SensorReading(dataArray(0).trim,dataArray(1).trim.toLong,dataArray(2).trim.toDouble)
-    }).keyBy("id").reduce((x,y) =>SensorReading(x.id,x.timestamp+y.timestamp,x.temperature+y.temperature))
+    // tranformation之 keyBy
+    val dataStream = data.keyBy("id").sum("temperature")
+
+    // tranformation之 reduce
+    val dataStream2 = data.keyBy("id").reduce((x,y) =>SensorReading(x.id,x.timestamp+y.timestamp,x.temperature+y.temperature))
+
+    // tranformation之 分流 选择流
+    val splitStream = data.split( everyData =>{
+      if(everyData.temperature >30) Seq("high") else  Seq("low")
+    })
+
+    val highStream = splitStream.select("high")
+    val lowStream = splitStream.select("low")
+
+    val allStream  = splitStream.select("high","low")
+
+    // concent 和 coMap算子
+    val warning = highStream.map( data => (data.id,data.temperature))
+    val concented = warning.connect(lowStream)
+
+    val coMapStream = concented.map(
+      warningData => (warningData._1, warningData._2, "warning"),
+      lowData => (lowData.id, "healthy")
+    )
+
 
 
     //sink
@@ -56,6 +77,12 @@ object Sensor {
     stream3.print("stream3").setParallelism(1)
     dataStream.print("dataStream").setParallelism(1)
     dataStream2.print("dataStream2").setParallelism(1)
+
+    highStream.print("highStream").setParallelism(1)
+    lowStream.print("lowStream").setParallelism(1)
+    allStream.print("allStream").setParallelism(1)
+
+    coMapStream.print("coMapStream").setParallelism(1)
 
     env.execute("api test")
 
