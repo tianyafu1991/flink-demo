@@ -69,6 +69,9 @@ object Sensor {
       lowData => (lowData.id, "healthy")
     )
 
+    // union
+    val unionStream = highStream.union(lowStream,allStream)
+
 
 
     //sink

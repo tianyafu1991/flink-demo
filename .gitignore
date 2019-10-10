@@ -23,3 +23,5 @@
 hs_err_pid*
 /.idea/
 /flinkdemo.iml
+/flink-demo.iml
+/wordcount/wordcount.iml
