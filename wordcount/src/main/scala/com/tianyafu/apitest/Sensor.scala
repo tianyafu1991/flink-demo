@@ -24,7 +24,7 @@ object Sensor {
     ))
 
     //source2 : 从文件中读取数据
-    val inputPath = "E:\\WorkSpace\\IDEAWorkspace\\flinkdemo\\wordcount\\src\\main\\resource\\sensor.txt"
+    val inputPath = "F:\\tianyafu\\tianyafu_github\\flink-demo\\wordcount\\src\\main\\resource\\sensor.txt"
     val stream2 = env.readTextFile(inputPath)
 
     //source3 ；从kafka中读取数据源
@@ -44,12 +44,18 @@ object Sensor {
       SensorReading(dataArray(0).trim,dataArray(1).trim.toLong,dataArray(2).trim.toDouble)
     }).keyBy("id").sum("temperature")
 
+    val dataStream2 = stream2.map(data =>{
+      val dataArray = data.split(",")
+      SensorReading(dataArray(0).trim,dataArray(1).trim.toLong,dataArray(2).trim.toDouble)
+    }).keyBy("id").reduce((x,y) =>SensorReading(x.id,x.timestamp+y.timestamp,x.temperature+y.temperature))
+
 
     //sink
     stream1.print("stream1").setParallelism(1)
     stream2.print("stream2").setParallelism(1)
     stream3.print("stream3").setParallelism(1)
-    dataStream.print("data").setParallelism(1)
+    dataStream.print("dataStream").setParallelism(1)
+    dataStream2.print("dataStream2").setParallelism(1)
 
     env.execute("api test")
 
