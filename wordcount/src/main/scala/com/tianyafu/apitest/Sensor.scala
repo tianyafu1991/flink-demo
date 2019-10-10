@@ -6,8 +6,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 
-//定义一个数据样例类，传感器id，采集时间戳，传感器温度
-case class SensorReading(id:String,timestamp:Long,temperature:Double)
+
 
 object Sensor {
 
@@ -40,14 +39,23 @@ object Sensor {
 
     //tranformation
 
+    val dataStream = stream2.map(data =>{
+      val dataArray = data.split(",")
+      SensorReading(dataArray(0).trim,dataArray(1).trim.toLong,dataArray(2).trim.toDouble)
+    }).keyBy("id").sum("temperature")
+
 
     //sink
     stream1.print("stream1").setParallelism(1)
     stream2.print("stream2").setParallelism(1)
     stream3.print("stream3").setParallelism(1)
+    dataStream.print("data").setParallelism(1)
 
     env.execute("api test")
 
   }
 
 }
+
+//定义一个数据样例类，传感器id，采集时间戳，传感器温度
+case class SensorReading(id:String,timestamp:Long,temperature:Double)
