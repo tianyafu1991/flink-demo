@@ -4,7 +4,8 @@ import java.util.Properties
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer.Semantic
+import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaProducer}
 
 
 
@@ -70,7 +71,7 @@ object Sensor {
     )
 
     // union
-    val unionStream = highStream.union(lowStream,allStream)
+    val union = highStream.union(lowStream,allStream)
 
 
 
@@ -86,6 +87,10 @@ object Sensor {
     allStream.print("allStream").setParallelism(1)
 
     coMapStream.print("coMapStream").setParallelism(1)
+
+    //sink 到 kafka
+    val unionStream = union.map(data =>data.toString)
+//    unionStream.addSink(new FlinkKafkaProducer[String]("test",new SimpleStringSchema(),properties,Semantic.EXACTLY_ONCE))
 
     env.execute("api test")
 
