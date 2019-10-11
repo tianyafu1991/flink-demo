@@ -25,7 +25,7 @@ object Sensor {
     ))
 
     //source2 : 从文件中读取数据
-    val inputPath = "F:\\tianyafu\\tianyafu_github\\flink-demo\\wordcount\\src\\main\\resource\\sensor.txt"
+    val inputPath = "E:\\WorkSpace\\IDEAWorkspace\\flinkdemo\\wordcount\\src\\main\\resource\\sensor.txt"
     val stream2 = env.readTextFile(inputPath)
 
     //source3 ；从kafka中读取数据源
@@ -90,7 +90,10 @@ object Sensor {
 
     //sink 到 kafka
     val unionStream = union.map(data =>data.toString)
-//    unionStream.addSink(new FlinkKafkaProducer[String]("test",new SimpleStringSchema(),properties,Semantic.EXACTLY_ONCE))
+    val kafkaProducerProperties = new Properties()
+    kafkaProducerProperties.setProperty("bootstrap.servers", "master:9092,slave01:9092,slave02:9092")
+
+    unionStream.addSink(new FlinkKafkaProducer[String]("flink_sink_test",new SimpleStringSchema(),kafkaProducerProperties))
 
     env.execute("api test")
 
