@@ -7,6 +7,10 @@ import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer.Semantic
 import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaProducer, FlinkKafkaProducer011}
 
+/**
+  * fink 整合 kafka
+  * see https://ci.apache.org/projects/flink/flink-docs-stable/dev/connectors/kafka.html
+  */
 object FlinkKafkaApi {
 
   def main(args: Array[String]): Unit = {
@@ -29,7 +33,8 @@ object FlinkKafkaApi {
     //sink
     val sinkTopic = "flink_sink_test"
     val kafkaProducerProperties = new Properties()
-    tupleStream.addSink(new FlinkKafkaProducer(sinkTopic,new SimpleStringSchema(),kafkaConsumerProperties))
+    kafkaProducerProperties.setProperty("bootstrap.servers", "master:9092,slave01:9092,slave02:9092")
+    tupleStream.addSink(new FlinkKafkaProducer(sinkTopic,new SimpleStringSchema(),kafkaProducerProperties))
 
     //执行
     env.execute()
