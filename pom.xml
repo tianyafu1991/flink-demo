@@ -55,6 +55,15 @@
       <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
       <version>${flink.version}</version>
     </dependency>
+
+    <!--kafka 整合 redis-->
+    <!-- https://mvnrepository.com/artifact/org.apache.bahir/flink-connector-redis -->
+    <dependency>
+      <groupId>org.apache.bahir</groupId>
+      <artifactId>flink-connector-redis_2.11</artifactId>
+      <version>1.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>
