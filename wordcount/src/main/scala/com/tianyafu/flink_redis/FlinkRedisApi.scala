@@ -10,6 +10,10 @@ import org.apache.flink.streaming.connectors.redis.RedisSink
 import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisPoolConfig
 import org.apache.flink.streaming.connectors.redis.common.mapper.{RedisCommand, RedisCommandDescription, RedisMapper}
 
+/**
+  * Flink 整合redis
+  * see https://bahir.apache.org/docs/flink/current/flink-streaming-redis/
+  */
 object FlinkRedisApi {
 
   def main(args: Array[String]): Unit = {
