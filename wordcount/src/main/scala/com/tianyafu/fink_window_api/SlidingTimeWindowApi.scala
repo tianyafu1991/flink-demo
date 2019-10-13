@@ -10,9 +10,10 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 
 /**
   *
+  * timeWindow
   * 统计每个传感器每15秒内的最小温度,每隔5秒滑动一次窗口
   */
-object SlidingWindowApi {
+object SlidingTimeWindowApi {
 
   def main(args: Array[String]): Unit = {
     //env

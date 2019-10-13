@@ -10,10 +10,10 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 
 /**
   * see https://ci.apache.org/projects/flink/flink-docs-release-1.9/dev/stream/operators/windows.html
-  *
+  * timeWindow
   * 本例统计每个传感器每15秒内的最小温度
   */
-object TumbingWindowApi {
+object TumbingTimeWindowApi {
 
   def main(args: Array[String]): Unit = {
 
