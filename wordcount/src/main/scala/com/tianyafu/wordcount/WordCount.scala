@@ -13,7 +13,7 @@ object WordCount {
 
 
     //source 读取数据
-    val inputPath= "F:\\tianyafu\\tianyafu_github\\flink-demo\\wordcount\\src\\main\\resource\\hello.txt"
+    val inputPath= "E:\\WorkSpace\\IDEAWorkspace\\flinkdemo\\wordcount\\src\\main\\resource\\sensor.txt"
     val inputDS = env.readTextFile(inputPath)
     //transformation 转换
     val wordCountDS = inputDS.flatMap(_.split(" ")).map((_,1)).groupBy(0).sum(1)
@@ -21,6 +21,8 @@ object WordCount {
 
     //sink 输出
     wordCountDS.print()
+
+    env.execute()
   }
 
 }
