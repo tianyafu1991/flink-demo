@@ -14,7 +14,7 @@ public class BatchWordCount {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
         //Load/create the initial data
-        String path  = "F:\\tianyafu\\tianyafu_github\\flink-demo\\wordcount\\src\\main\\resource\\hello.txt";
+        String path  = "E:\\WorkSpace\\IDEAWorkspace\\flinkdemo\\wordcount\\src\\main\\resource\\hello.txt";
         DataSource<String> dataSource = env.readTextFile(path);
 
         //Specify transformations on this data
