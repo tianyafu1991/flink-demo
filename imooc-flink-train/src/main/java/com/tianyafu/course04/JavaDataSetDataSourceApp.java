@@ -1,6 +1,8 @@
 package com.tianyafu.course04;
 
 import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.api.java.operators.DataSource;
+import org.apache.flink.configuration.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,11 @@ public class JavaDataSetDataSourceApp {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 //        fromCollection(env);
 
-        fromTextFile(env);
+//        fromTextFile(env);
+
+//        fromCsvFile(env);
+//        fromRecursiveFile(env);
+        fromCompressionFile(env);
     }
 
     public static void  fromCollection(ExecutionEnvironment env) throws Exception {
@@ -31,5 +37,43 @@ public class JavaDataSetDataSourceApp {
         filePath = "E:\\WorkSpace\\IDEAWorkspace\\flinkdemo\\imooc-flink-train\\src\\main\\resource";
         env.readTextFile(filePath).print();
 
+    }
+
+    /**
+     * 读取csv文件
+     * @param env
+     * @throws Exception
+     */
+    public static void fromCsvFile(ExecutionEnvironment env) throws Exception {
+        String filePath = "F:\\tianyafu\\tianyafu_github\\flink-demo\\imooc-flink-train\\src\\main\\resource\\user.csv";
+        env.readCsvFile(filePath).ignoreFirstLine().includeFields(false,true,true,true).pojoType(MyPerson.class, "name", "sex", "school").print();
+
+    }
+
+    /**
+     * 递归读取文件
+     * @param env
+     * @throws Exception
+     */
+    public static void fromRecursiveFile(ExecutionEnvironment env) throws Exception {
+        String filePath = "F:\\tianyafu\\tianyafu_github\\flink-demo\\imooc-flink-train\\src\\main\\resource";
+
+        Configuration parameters = new Configuration();
+        parameters.setBoolean("recursive.file.enumeration", true);
+
+        env.readTextFile(filePath).withParameters(parameters).print();
+
+
+    }
+
+    /**
+     * 读取压缩文件
+     * @param env
+     * @throws Exception
+     */
+    public static void fromCompressionFile(ExecutionEnvironment env) throws Exception {
+        String filePath = "F:\\tianyafu\\tianyafu_github\\flink-demo\\imooc-flink-train\\src\\main\\resource\\userCsv.gz";
+
+        env.readTextFile(filePath).print();
     }
 }
