@@ -11,12 +11,12 @@ object DataStreamingDataSourceApp {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
 
-    //    fromSocket(env)
+        fromSocket(env)
     //    nonParallelSourceFunction(env)
     //    parallelSourceFunction(env)
     //    richParallelSourceFunction(env)
 //    unionFunction(env)
-    splitSelectFunction(env)
+//    splitSelectFunction(env)
     env.execute()
   }
 
