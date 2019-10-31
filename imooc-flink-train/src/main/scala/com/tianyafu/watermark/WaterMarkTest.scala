@@ -29,8 +29,9 @@ object WaterMarkTest {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
+    env.setParallelism(1)
 
-    val dataSource = env.socketTextStream("master",9999)
+    val dataSource = env.socketTextStream("192.168.101.217",9999)
 
 
     val watermark = dataSource.map(x => {
@@ -57,7 +58,7 @@ object WaterMarkTest {
         val timestamp = element._2
         currentMaxTimestamp = Math.max(timestamp, currentMaxTimestamp)
         println(
-          "timestamp:" + element._1 + "," + element._2 + "|" + format.format(element._2) + "," + currentMaxTimestamp + "|" + format.format(currentMaxTimestamp) + "," + watermark.toString
+          "timestamp:" + element._1 + "," + element._2 + "|" + format.format(element._2) + "," + currentMaxTimestamp + "|" + format.format(currentMaxTimestamp) + "," +format.format(watermark.getTimestamp())
         )
         timestamp
       }

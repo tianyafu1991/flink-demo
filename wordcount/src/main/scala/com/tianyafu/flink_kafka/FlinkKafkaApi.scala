@@ -34,7 +34,7 @@ object FlinkKafkaApi {
     val sinkTopic = "flink_sink_test"
     val kafkaProducerProperties = new Properties()
     kafkaProducerProperties.setProperty("bootstrap.servers", "master:9092,slave01:9092,slave02:9092")
-    tupleStream.addSink(new FlinkKafkaProducer(sinkTopic,new SimpleStringSchema(),kafkaProducerProperties))
+    tupleStream.addSink(new FlinkKafkaProducer(sinkTopic,new SimpleStringSchema(),kafkaProducerProperties, FlinkKafkaProducer.Semantic.EXACTLY_ONCE))
 
     //执行
     env.execute()
