@@ -76,6 +76,7 @@ public class StreamingWindowWatermark {
         //分组， 聚合
         DataStream<String> window = waterMarkStream.keyBy(0)
                 .window(TumblingEventTimeWindows.of(Time.seconds(3)))// 按 照 消 息 的 EventTime 分配窗口，和调用 TimeWindow 效果一样
+//                .allowedLateness(Time.seconds(2))
                 .apply(new WindowFunction<Tuple2<String, Long>, String, Tuple,TimeWindow>() {
                     /**
                      * 对 window 内的数据进行排序， 保证数据的顺序
