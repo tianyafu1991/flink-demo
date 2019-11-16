@@ -1,5 +1,0 @@
-server:
-  port: 6097
-spring:
-  application:
-    name: DsService

@@ -1,13 +1,13 @@
-package com.imooc.dsservice;
+package com.youfan.flink.dsinfoservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DsServiceApplication {
+public class DsinfoserviceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DsServiceApplication.class, args);
+        SpringApplication.run(DsinfoserviceApplication.class, args);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.imooc.dsservice;
+package com.youfan.flink.dsinfoservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DsServiceApplicationTests {
+public class DsinfoserviceApplicationTests {
 
     @Test
     public void contextLoads() {

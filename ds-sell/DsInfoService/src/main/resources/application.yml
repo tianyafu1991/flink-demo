@@ -1,0 +1,26 @@
+server:
+  port: 6097
+spring:
+  application:
+    name: ds-info-service
+  kafka:
+    bootstrap-servers: dsb:9092,dsf:9092,dse:9092
+    consumer:
+      ## Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时,默认区最新 ，有三个选项 【latest, earliest, none】
+      auto-offset-reset: latest
+      ## 是否开启自动提交
+      enable-auto-commit: false
+      # key的解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # value的解码方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: flink-consumer-group
+
+    producer:
+      bootstrap-servers: dsb:9092,dsf:9092,dse:9092
+      batch-size: 4096
+      retries: 0
+      buffer-memory: 40960
+      linger: 1
+
+
