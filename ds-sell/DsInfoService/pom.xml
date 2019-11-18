@@ -35,6 +35,21 @@
             <artifactId>spring-kafka</artifactId>
             <version>1.1.1.RELEASE</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
+        </dependency>
+
+        <!--添加common依赖-->
+        <dependency>
+            <groupId>com.imooc</groupId>
+            <artifactId>ds-analy-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 

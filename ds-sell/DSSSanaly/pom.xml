@@ -62,6 +62,14 @@
             <version>${flink.version}</version>
         </dependency>
 
+        <!--Flink 整合 redis-->
+        <!-- https://mvnrepository.com/artifact/org.apache.bahir/flink-connector-redis -->
+        <dependency>
+            <groupId>org.apache.bahir</groupId>
+            <artifactId>flink-connector-redis_${scala.binary.version}</artifactId>
+            <version>${flink.redis.version}</version>
+        </dependency>
+
         <!--flink 整合 kafka-->
         <!--<dependency>
             <groupId>org.apache.flink</groupId>
@@ -78,6 +86,34 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-shaded-jackson</artifactId>
             &lt;!&ndash;<version>2.9.8-7.0</version>&ndash;&gt;
+        </dependency>-->
+
+        <!--添加common依赖-->
+        <dependency>
+            <groupId>com.imooc</groupId>
+            <artifactId>ds-analy-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--添加电商上报服务的日志-->
+        <dependency>
+            <groupId>com.youfan.flink</groupId>
+            <artifactId>dsinfoservice</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!--日志相关依赖-->
+        <!--<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
         </dependency>-->
     </dependencies>
 
