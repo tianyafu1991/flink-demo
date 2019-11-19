@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.imooc</groupId>
+    <groupId>com.youfan</groupId>
     <artifactId>ds-analy-common</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
 
 </project>

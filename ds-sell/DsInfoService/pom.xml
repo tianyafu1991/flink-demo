@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.youfan.flink</groupId>
     <artifactId>dsinfoservice</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>dsinfoservice</name>
     <description>Demo project for Spring Boot</description>
 
@@ -45,9 +45,9 @@
 
         <!--添加common依赖-->
         <dependency>
-            <groupId>com.imooc</groupId>
+            <groupId>com.youfan</groupId>
             <artifactId>ds-analy-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
 
     </dependencies>
