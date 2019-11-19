@@ -59,12 +59,12 @@ public class SSProcessData {
         reduce.addSink(new RedisSink<PindaoRD>(jedisConf, new RedisMapper<PindaoRD>() {
             @Override
             public RedisCommandDescription getCommandDescription() {
-                return new RedisCommandDescription(RedisCommand.HSET,"tianyafu");
+                return new RedisCommandDescription(RedisCommand.LPUSH,"tianyafu");
             }
 
             @Override
             public String getKeyFromData(PindaoRD in) {
-                return "PindaoRD"+in.getPingdaoid();
+                return "pingdaord"+in.getPingdaoid();
             }
 
             @Override

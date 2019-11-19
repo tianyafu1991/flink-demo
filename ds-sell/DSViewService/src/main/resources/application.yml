@@ -1,0 +1,25 @@
+server:
+  port: 6098
+spring:
+  application:
+    name: ds-view-service
+  redis:
+    ## Redis数据库索引（默认为0）
+    database: ${REDIS_DATABASE:10}
+    ## 主机
+    host: ${REDIS_HOST:192.168.101.212}
+    ## 端口
+    port: ${REDIS_PORT:6379}
+    ## Redis服务器连接密码（默认为空）
+    password: ${REDIS_PASSWORD:NaRT9gnxMKZ6MqA2}
+    ## 连接超时时间（秒）
+    timeout: 43200
+    pool:
+      ## 连接池最大连接数（使用负值表示没有限制）
+      max-active: 600
+      ## 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: 1000
+      ## 连接池中的最大空闲连接
+      max-idle: 300
+      ## 连接池中的最小空闲连接
+      min-idle: 200
