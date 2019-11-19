@@ -26,6 +26,11 @@
             <name>Scala-Tools Maven2 Repository</name>
             <url>http://scala-tools.org/repo-releases</url>
         </repository>
+        <repository>
+            <id>cloudera-remote</id>
+            <name>remote cloudera repository</name>
+            <url>https://repository.cloudera.com/content/repositories/releases/</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -115,6 +120,19 @@
             <version>${log4j.version}</version>
             <scope>compile</scope>
         </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.2.0-cdh5.16.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>1.2.0-cdh5.16.1</version>
+        </dependency>
     </dependencies>
 
     <build>
