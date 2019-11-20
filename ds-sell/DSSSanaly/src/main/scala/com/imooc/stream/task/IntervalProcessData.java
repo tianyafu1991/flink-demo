@@ -1,4 +1,4 @@
-package com.imooc.stream;
+package com.imooc.stream.task;
 
 import com.imooc.stream.map.PingdaoKafkaMap;
 import com.imooc.stream.reduce.PindaoReduce;
@@ -24,8 +24,11 @@ import org.apache.flink.streaming.connectors.redis.common.mapper.RedisMapper;
 
 /**
  * Created by Administrator on 2018/10/27 0027.
+ * 频道热点统计
+ *
+ * Kafka Source  to  Redis sink
  */
-public class SSProcessData {
+public class IntervalProcessData {
     public static void main(String[] args) {
 //        System.setProperty("hadoop.home.dir","E:\\soft\\hadoop-2.6.0-cdh5.5.1\\hadoop-2.6.0-cdh5.5.1");
         args = new String[]{"--input-topic","flink-kafka-msi","--output-topic","flink-kafka-output-msi","--bootstrap.servers","dsd:9092,dse:9092,dsf:9092",

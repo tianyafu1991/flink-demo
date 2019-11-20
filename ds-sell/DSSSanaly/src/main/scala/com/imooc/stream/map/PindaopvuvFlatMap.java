@@ -1,10 +1,10 @@
 package com.imooc.stream.map;
 
 import com.alibaba.fastjson.JSON;
+import com.imooc.dao.PdvisterDao;
 import com.imooc.util.DateUtil;
 import com.youfan.analy.PindaoPvUv;
 import com.youfan.analy.UserState;
-import com.youfan.dao.PdvisterDao;
 import com.youfan.entity.KafkaMessage;
 import com.youfan.entity.UserscanLog;
 import org.apache.flink.api.common.functions.FlatMapFunction;

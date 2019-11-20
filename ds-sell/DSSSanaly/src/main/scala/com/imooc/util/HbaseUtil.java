@@ -105,6 +105,7 @@ public class HbaseUtil {
         System.out.println(string);*/
         //建表
         /*createTable("pindaoinfo","info");*/
+        createTable("baseuserscaninfo","info");
 
     }
 

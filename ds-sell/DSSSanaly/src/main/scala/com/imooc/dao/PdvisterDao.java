@@ -28,7 +28,7 @@ public class PdvisterDao {
                 Map<String,String> datamap = new HashMap<String,String>();
                 datamap.put("fisrtvisittime",timestamp+"");
                 datamap.put("lastvisittime",timestamp+"");
-                HbaseUtil.put("baseuserscaninfo",userid,"time",datamap);
+                HbaseUtil.put("baseuserscaninfo",userid,"info",datamap);
                 userState.setIsnew(true);
                 userState.setFisrtday(true);
                 userState.setFisrthour(true);
