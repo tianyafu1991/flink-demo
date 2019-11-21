@@ -1,12 +1,12 @@
 package com.imooc.stream.task;
 
-
 import com.imooc.stream.map.PindaoXinXianDuMap;
 import com.imooc.stream.reduce.PindaoXinxianduReduce;
 import com.imooc.stream.sink.PindaoXinXiandusinkreduce;
 import com.imooc.transfer.KafkaMessageSchema;
 import com.imooc.transfer.KafkaMessageWatermarks;
 import com.youfan.analy.PidaoXinXianDu;
+
 import com.youfan.entity.KafkaMessage;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.java.utils.ParameterTool;
@@ -18,7 +18,7 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
 /**
  * Created by Administrator on 2018/10/27 0027.
  */
-public class SSXinXianDuProcessData {
+public class SSDQFBProcessData {
     public static void main(String[] args) {
         System.setProperty("hadoop.home.dir","E:\\soft\\hadoop-2.6.0-cdh5.5.1\\hadoop-2.6.0-cdh5.5.1");
         args = new String[]{"--input-topic","test1","--bootstrap.servers","192.168.253.151:9092",
