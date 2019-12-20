@@ -7,6 +7,7 @@
   <modules>
     <module>wordcount</module>
     <module>imooc-flink-train</module>
+      <module>learning-flink</module>
   </modules>
 
   <packaging>pom</packaging>
@@ -20,7 +21,7 @@
     <druid.version>1.1.10</druid.version>
     <slf4j.version>1.7.22</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
-    <hadoop.version>2.6.0-cdh5.16.1</hadoop.version>
+    <hadoop.version>2.7.1</hadoop.version>
   </properties>
 
   <repositories>
